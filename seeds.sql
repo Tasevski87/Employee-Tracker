@@ -2,23 +2,23 @@ USE employee_tracker_db;
 
 
 
-INSERT INTO department (name)
+INSERT INTO department (department_name)
 VALUES ("Engineering");
 
-INSERT INTO department (name)
+INSERT INTO department (department_name)
 VALUES ("Finance");
 
-INSERT INTO department (name)
+INSERT INTO department (department_name)
 VALUES ("Legal");
 
-INSERT INTO department (name)
+INSERT INTO department (department_name)
 VALUES ("Sales");
 
 INSERT INTO role (title, salary, department_id)
 VALUES ("Sales Lead", 100000, 4 );
 
 INSERT INTO role (title, salary, department_id)
-VALUES ("Sales peron", 80000, 4);
+VALUES ("Sales person", 80000, 4);
 
 INSERT INTO role (title, salary, department_id)
 VALUES ("Lead Engineer", 150000, 1 );
