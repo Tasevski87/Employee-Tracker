@@ -2,7 +2,7 @@ const mysql = require("mysql2");
 const inquirer = require("inquirer");
 
 
-const PORT = process.env.PORT || 3001;
+//const PORT = process.env.PORT || 3001;
 
 //crating connection with mysql
 const db = mysql.createConnection(
@@ -160,7 +160,7 @@ function addEmployee() {
         {
             type: 'input',
             name: 'mangID',
-            message: 'What is the first and last name of the manager of the new employee ?'
+            message: 'What is the manager id number ?'
         },
     ]).then(function(res){
         const firstName = res.firstName
