@@ -18,10 +18,6 @@ Employee Tracker app was created for a bussines owner where he can be able to vi
 
 [Badge](#Badge)
 
-[Screencastify video of application] (#Screencastify video of application)
-
-[Heroku link] (#Heroku link)
-
 [GitHub](#GitHub)
 
 [GitHub-Repo](#Github-Repo)
