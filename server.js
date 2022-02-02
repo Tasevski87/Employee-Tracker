@@ -1,8 +1,10 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 
+
 const PORT = process.env.PORT || 3001;
 
+//crating connection with mysql
 const db = mysql.createConnection(
     {
         host: 'localhost',
@@ -12,12 +14,13 @@ const db = mysql.createConnection(
     },
     console.log('Welcome to the Employee Tracker app ')
 )
+//checking if there is an error with the connection
 db.connect(err => {
     if (err) throw err;
     console.log('Database connected');
     mainQuestion()
 })
-
+//main function where 
 function mainQuestion() {
     inquirer.prompt([
         {
@@ -47,7 +50,7 @@ function mainQuestion() {
         }
     })
 }
-
+// selecting and making left join table 
 function viewAll() {
     db.query("SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;", (err, res) => {
         if (err) throw err;
@@ -55,6 +58,7 @@ function viewAll() {
         mainQuestion()
     })
 }
+//created function to view department
 function viewDepartment() {
     db.query("SELECT * FROM department;", (err, res) => {
         if (err) throw err;
@@ -62,6 +66,7 @@ function viewDepartment() {
         mainQuestion()
     })
 }
+//created function to view role
 function viewRole() {
     db.query("SELECT * FROM role;", (err, res) => {
         if (err) throw err;
@@ -69,6 +74,7 @@ function viewRole() {
         mainQuestion()
     })
 }
+//created function to view employees 
 function viewEmployees() {
     db.query("SELECT * FROM employee;", (err, res) => {
         if (err) throw err;
@@ -76,7 +82,7 @@ function viewEmployees() {
         mainQuestion()
     })
 }
-
+//created function to add department to the table 
 function addDepartment() {
     inquirer.prompt([
         {
@@ -98,7 +104,7 @@ function addDepartment() {
 
 
 }
-
+//created function to add role to the table 
 function addRole() {
     inquirer.prompt([
         {
@@ -126,11 +132,14 @@ function addRole() {
             if (err) {
                 throw err;
             }
+            //console log the response 
             console.table(res);
+            //return us to the main question
             mainQuestion()
         })
     })
 }
+//created function to add employee to the table
 function addEmployee() {
     inquirer.prompt([
         {
@@ -159,17 +168,20 @@ function addEmployee() {
         const roleId = res.roleID
         const managerId = res.mangID
         const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${firstName}", "${lastName}", "${roleId}", "${managerId}")`;
+        //checking for an error 
         db.query(query, function (err, res){
             if(err){
                 throw err;
             }
+                //console log the response
                 console.table(res);
+                //return us to the main question
                 mainQuestion()
         })
     })
 }
 
-
+//created function to update employee from the table
 function updateEmployee() {
     inquirer.prompt([
         {
@@ -196,7 +208,9 @@ function updateEmployee() {
                 }
             ]
         )
+        //console log updated employee
         console.log('employee updated');
+       // return us to the main question
         mainQuestion()
     })
 }

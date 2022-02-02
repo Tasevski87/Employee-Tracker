@@ -14,6 +14,8 @@ VALUES ("Legal");
 INSERT INTO department (department_name)
 VALUES ("Sales");
 
+
+
 INSERT INTO role (title, salary, department_id)
 VALUES ("Sales Lead", 100000, 4 );
 
